@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'contact', component: ContactPageComponent},
   // Lazy Load
   {path: 'countries', loadChildren: () => import('./countries/countries.module').then( m => m.CountriesModule)},
-  {path: '**', redirectTo: 'home'}
+  {path: '**', redirectTo: 'countries'}
 ]
 
 @NgModule({
