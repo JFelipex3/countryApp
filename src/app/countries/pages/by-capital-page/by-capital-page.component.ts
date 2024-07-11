@@ -1,5 +1,6 @@
 import { Component, output } from '@angular/core';
-import { SearchBoxComponent } from '../../../shared/components/search-box/search-box.component';
+import { Country } from '../../interfaces/country';
+import { CountriesService } from '../../services/countries.service';
 
 @Component({
   selector: 'countries-by-capital-page',
@@ -8,8 +9,14 @@ import { SearchBoxComponent } from '../../../shared/components/search-box/search
 })
 export class ByCapitalPageComponent {
 
-  searchByCapital( term: string ): void {
-    console.log('Desde ByCapitalPage');
-    console.log({term});
+  public countries: Country[] = [];
+
+  constructor(private countriesService: CountriesService ){}
+
+  searchByCapital(term: string):void {
+    this.countriesService.searchCapital(term)
+      .subscribe(countries => {
+        this.countries = countries;
+      });
   }
 }
